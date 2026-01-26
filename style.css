@@ -1,0 +1,331 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-attachment: fixed;
+    background-size: cover;
+    
+}
+
+html, body {
+   background-color: #0c192c; 
+   background: url(images/Gemini_Generated_Image_nf6i1rnf6i1rnf6i.png);
+   background-size: cover;        
+   background-position: center;   
+   background-repeat: no-repeat;  
+   background-attachment: fixed;
+   margin: 0;
+   padding: 0;
+   width: 100%;
+   min-height: 100%;
+}
+
+
+
+/* FEATURED GAMES */
+
+
+.cards-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.image-container:hover img {
+  transform: scale(1.1);
+  transition: transform 0.5s ease;
+}
+
+.card {
+  width: 320px;
+  flex-shrink: 0;
+  color: white;
+  text-decoration: none;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #10d177;
+  color: white;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+
+.card-text {
+  margin-top: 8px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  font-family: sans-serif;
+}
+
+
+
+h1 {
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+  margin-bottom: 40px;
+  text-align: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+}
+
+
+
+
+
+/* NAVBAR */
+
+
+nav {
+  position: fixed;          
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 18, 30, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: 'Archivo Black', sans-serif;
+  display: flex;                 
+  justify-content: center;       
+  align-items: center;          
+  padding: 10px 0;
+}
+
+
+nav ul li a {
+    text-decoration: none;
+    color: #dbdbdb;
+    font-size: 20px;
+    font-weight: bold;
+    padding:  10px 15px;        
+    display: inline-block;      
+    line-height: normal;        
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+
+
+.nav-center {
+  display: flex;
+  list-style: none;
+  gap: 20px; 
+  margin: 0;
+  padding: 0;
+}
+
+
+.nav-center a:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* BLASTXGT LOGO */
+
+.nav-left a {
+ position: fixed;
+  top: 18px;
+  left: 350px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #10d177, #10d177);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  transform: skewX(-15deg);
+}
+
+.nav-left {
+  position: absolute;
+  top: 20px;          
+  left: 350px;  
+}
+
+
+
+/* VIDEOS */
+
+.videos {
+    display: grid;
+    grid-template-columns: repeat(3, auto); 
+    grid-template-rows: repeat(3, auto);    
+    justify-content: center;  
+    align-content: center;   
+    gap: 10px;                
+    padding: 20px;
+    min-height: 100vh;        
+}
+
+.videos h1 {
+    grid-column: 1 / -1;   
+    justify-self: start;    
+    font-size: 2em;         
+    margin-bottom: 5px;
+    color: #fff;            
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7); 
+}
+
+.videos iframe {
+    width: 270px;            
+    height: 150px;           
+    border-radius: 15px;     
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+    transition: transform 0.25s ease;
+}
+
+.videos iframe:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+
+}
+
+/* TWITCH LIVE STREAM */
+
+
+#twitch-embed {
+  width: 100%;
+  max-width: 1100px;
+  margin: 170px auto 40px auto;
+
+  aspect-ratio: 21 / 9;
+
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+
+#twitch-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+
+/* SOCIALS */
+
+
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 130px; 
+  font-family: 'Arial', sans-serif;
+  color: white;
+}
+
+.profile-pic {
+  width: 140px;
+  height: 135px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.profile h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 50px; 
+}
+
+
+.social-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+  width: 250px; 
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background-color: rgba(255,255,255,0.05); 
+  transition: all 0.3s;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.social-link img {
+  width: 30px;
+  height: 30px;
+}
+
+
+.social-link:hover {
+  box-shadow: 0 4px px rgba(0, 0, 0, 0.4);
+}
+
+
+.social-link.youtube:hover {
+  background-color: #ff00005e;
+}
+
+.social-link.twitch:hover {
+  background-color: #673ab770;  
+}
+
+.social-link.instagram:hover {
+  background-color: #e1306b70;
+}
+
+.social-link.tiktok:hover {
+  background-color: #69C9D070;
+}
+
+.social-link.discord:hover {
+  background-color: #5865f270;
+}
+
+
+
+
+
+
+
+
+
+
+
