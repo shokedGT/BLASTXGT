@@ -187,9 +187,11 @@ nav ul li a {
     grid-template-rows: repeat(3, auto);    
     justify-content: center;  
     align-content: center;   
-    gap: 10px;                
+    gap: 17px;                
     padding: 20px;
-    min-height: 100vh;        
+    min-height: 35vh;
+    transform: scale(1.3); 
+    
 }
 
 .videos h1 {
@@ -201,19 +203,17 @@ nav ul li a {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.7); 
 }
 
+
 .videos iframe {
     width: 270px;            
-    height: 150px;           
+    height: 150px;    
     border-radius: 15px;     
     border: none;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
     transition: transform 0.25s ease;
 }
 
 .videos iframe:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-
+    transform: scale(1.1);
 }
 
 /* TWITCH LIVE STREAM */
@@ -318,6 +318,7 @@ nav ul li a {
 .social-link.discord:hover {
   background-color: #5865f270;
 }
+
 
 
 
