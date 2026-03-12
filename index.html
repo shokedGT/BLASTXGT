@@ -25,14 +25,17 @@
 
 
 
-  <div id="twitch-embed"></div>
+<div id="twitch-embed"></div>
+
 <script src="https://embed.twitch.tv/embed/v1.js"></script>
+
 <script type="text/javascript">
   new Twitch.Embed("twitch-embed", {
-    channel: "blastboost1232",
-    layout: "video-with-chat",
-    theme: "dark",
-    parent: ["127.0.0.1", "localhost", "shokedgt.github.io", "www.shokedgt.github.io"] 
+    width: "100%", // Adapts to your container width
+    height: 480,
+    channel: "blastboost1232", 
+    // Add BOTH 127.0.0.1 and localhost to cover your bases
+    parent: ["127.0.0.1", "localhost"] 
   });
 </script>
 
@@ -79,6 +82,7 @@
 
 
 </html>
+
 
 
 
