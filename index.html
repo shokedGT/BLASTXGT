@@ -3,7 +3,8 @@
 <head>
     <title>BLASTXGT</title>
     <link rel="stylesheet" href="style.css">
-    <meta name="keywords" content="Twitch, YouTube, videos, combined, streaming, profiles" name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Twitch, YouTube, videos, combined, streaming, profiles">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -28,62 +29,58 @@
 <div id="twitch-embed"></div>
 
 <script src="https://embed.twitch.tv/embed/v1.js"></script>
-
 <script type="text/javascript">
   new Twitch.Embed("twitch-embed", {
-    width: "100%", // Adapts to your container width
-    height: 480,
+    width: "100%", 
+    height: "100%",
     channel: "blastboost1232", 
-    // Add BOTH 127.0.0.1 and localhost to cover your bases
-    parent: ["127.0.0.1", "localhost"] 
+    parent: ["shokedgt.github.io", "localhost", "127.0.0.1"] 
   });
 </script>
 
-    <section class="videos">    
+<div class="videos">    
     <h1>LATEST VIDEOS</h1>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed?listType=playlist&list=UUZ5FqqLjKit6D_S0e9Hdi0w" frameborder="0" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed?listType=playlist&list=UUZ5FqqLjKit6D_S0e9Hdi0w&index=2" frameborder="0" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed?listType=playlist&list=UUZ5FqqLjKit6D_S0e9Hdi0w&index=3" frameborder="0" allowfullscreen></iframe>
- 
-    
+    <iframe src="https://www.youtube.com/embed?listType=playlist&list=UUZ5FqqLjKit6D_S0e9Hdi0w" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed?listType=playlist&list=UUZ5FqqLjKit6D_S0e9Hdi0w&index=2" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed?listType=playlist&list=UUZ5FqqLjKit6D_S0e9Hdi0w&index=3" frameborder="0" allowfullscreen></iframe>
+</div>
 
- </section>
+<div class="videos">    
+    <h1>LATEST STREAM</h1>
+    <iframe src="https://player.twitch.tv/?video=2647395472&parent=shokedgt.github.io" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://player.twitch.tv/?video=2619086944&parent=shokedgt.github.io" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://player.twitch.tv/?video=2614250923&parent=shokedgt.github.io" frameborder="0" allowfullscreen></iframe>
+</div>
 
-    <section class="videos">    
-    <h1>LATEST VIDEOS</h1>
-   <iframe width="560" height="315" src="https://player.twitch.tv/?video=2647395472&parent=shokedgt.github.io" style="display: inline-block;" frameborder="0" allowfullscreen></iframe>
-   <iframe width="560" height="315" src="https://player.twitch.tv/?video=2619086944&parent=shokedgt.github.io" style="display: inline-block;" frameborder="0" allowfullscreen></iframe>
-   <iframe width="560" height="315" src="https://player.twitch.tv/?video=2614250923&parent=shokedgt.github.io" style="display: inline-block;" frameborder="0" allowfullscreen></iframe>
-    
+<h1>Featured Games</h1>
+<div class="cards-row">
+  <a href="https://store.steampowered.com/app/292730/Call_of_Duty_Infinite_Warfare/" class="card" target="_blank">
+    <div class="image-container">
+      <span class="badge">LATEST</span>
+      <img src="images/images.png">
+    </div>
+    <div class="card-text">Spaceland zombies GAME</div>
+  </a>
 
- </section>
+  <a href="https://www.roblox.com/home" class="card" target="_blank">
+    <div class="image-container">
+      <span class="badge">LATEST</span>
+      <img src="images/images (2).jpg">
+    </div>
+    <div class="card-text">ROBLOX social/Minigames</div>
+  </a>
 
+  <a href="https://www.minecraft.net/en-us" class="card" target="_blank">
+    <div class="image-container">
+      <span class="badge">LATEST</span>
+      <img src="images/images (1).jpg">
+    </div>
+    <div class="card-text">Minecraft</div>
+  </a>
+</div>
 
-
-
- 
-
-
-
-
-
-<script src="navigation.js"></script>
-
-
-   
-
-
-
-
-
- 
-   
 </body>
-
-
 </html>
-
-
 
 
 
