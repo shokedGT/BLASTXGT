@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>BLASTXGT</title>
+    <title>BLASTXGT - REQUESTS</title>
     <link rel="stylesheet" href="style.css">
     <meta name="keywords" content="Twitch, YouTube, videos, combined, streaming, profiles">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -21,60 +22,111 @@
    
 
  
-<section class="videos">    
-    <h1>LATEST VIDEOS</h1>
-   <iframe width="560" height="315" src="https://player.twitch.tv/?video=2647395472&parent=shokedgt.github.io" style="display: inline-block;" frameborder="0" allowfullscreen></iframe>
-   <iframe width="560" height="315" src="https://player.twitch.tv/?video=2619086944&parent=shokedgt.github.io" style="display: inline-block;" frameborder="0" allowfullscreen></iframe>
-   <iframe width="560" height="315" src="https://player.twitch.tv/?video=2614250923&parent=shokedgt.github.io" style="display: inline-block;" frameborder="0" allowfullscreen></iframe>
-   <iframe width="560" height="315" src="https://player.twitch.tv/?video=2610502116&parent=shokedgt.github.io" style="display: inline-block;" frameborder="0" allowfullscreen></iframe>
-   <iframe width="560" height="315" src="https://player.twitch.tv/?video=2579958141&parent=shokedgt.github.io" style="display: inline-block;" frameborder="0" allowfullscreen></iframe>
-   <iframe width="560" height="315" src="https://www.youtube.com/embed/Ykc1gpuZIps" style="display: inline-block;" frameborder="0" allowfullscreen></iframe>
-    
-
- </section>
-  
-
-     <h1>Featured Games</h1>
-
-<div class="cards-row">
-
-  <a href="https://store.steampowered.com/app/292730/Call_of_Duty_Infinite_Warfare/" class="card" target="_blank">
-    <div class="image-container">
-      <span class="badge">LATEST</span>
-      <img src="images.png">
+<div class="main-container">
+  <div class="request-card">
+    <h2 class="title-main">Submit a Request</h2>
+    <div class="input-flex">
+      <input type="text" id="reqContent" placeholder="What is your request?">
+      <button onclick="sendToFirebase()" id="sendBtn">Send</button>
     </div>
-    <div class="card-text">Spaceland zombies GAME</div>
-  </a>
-
-  <a href="https://www.roblox.com/home" class="card" target="_blank">
-    <div class="image-container">
-      <span class="badge">LATEST</span>
-      <img src="images (2).jpg">
+    <div class="board-container">
+      <h3 ondblclick="toggleAdmin()" class="board-title">Live Request Board</h3>
+      <div id="requestBoard"></div>
     </div>
-    <div class="card-text">ROBLOX social/Minigames</div>
-  </a>
-
-  <a href="https://www.minecraft.net/en-us" class="card" target="_blank">
-    <div class="image-container">
-      <span class="badge">LATEST</span>
-      <img src="images (1).jpg">
-    </div>
-    <div class="card-text">Minecraft</div>
-  </a>
-
+  </div>
 </div>
 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyCcnw-ZFjvU1W22Gd6kbcIKpY2Yt1bz2t0",
+    authDomain: "blastxgt.firebaseapp.com",
+    projectId: "blastxgt",
+    storageBucket: "blastxgt.firebasestorage.app",
+    messagingSenderId: "135121974438",
+    appId: "1:135121974438:web:0866396d95220664ddb067",
+    measurementId: "G-VS7Z2RKQZ8"
+  };
 
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const reqCol = collection(db, "requests");
 
-    
+  let isAdmin = localStorage.getItem('adminMode') === 'true';
+
+  window.toggleAdmin = () => {
+    if (!isAdmin) {
+      const password = prompt("Enter Admin Password:");
+      if (password === "was360was") { 
+        isAdmin = true;
+        localStorage.setItem('adminMode', 'true');
+        alert("Admin Mode: ON");
+        location.reload();
+      } else {
+        alert("Wrong password!");
+      }
+    } else {
+      isAdmin = false;
+      localStorage.setItem('adminMode', 'false');
+      alert("Admin Mode: OFF");
+      location.reload();
+    }
+  };
+
+  window.sendToFirebase = async () => {
+    const input = document.getElementById('reqContent');
+    const btn = document.getElementById('sendBtn');
+    const text = input.value;
+    if(text.trim() !== "") {
+      try {
+        await addDoc(reqCol, { content: text, timestamp: Date.now() });
+        input.value = ''; 
+        btn.innerText = "SENT! ✔";
+        btn.style.background = "#fff"; 
+        setTimeout(() => {
+          btn.innerText = "Send";
+          btn.style.background = "#10d177";
+        }, 2000);
+      } catch (e) {
+        alert("Error! Check your Firebase Rules.");
+      }
+    }
+  };
+
+  const q = query(reqCol, orderBy("timestamp", "desc"));
+  onSnapshot(q, (snapshot) => {
+    const board = document.getElementById('requestBoard');
+    board.innerHTML = ''; 
+    snapshot.forEach(docSnap => {
+      const data = docSnap.data();
+      const date = new Date(data.timestamp);
+      const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      board.innerHTML += `
+        <div style="background: rgba(34, 34, 34, 0.8); padding: 15px; margin-bottom: 12px; border-left: 4px solid #10d177; display: flex; justify-content: space-between; align-items: center; border-radius: 8px; border: 1px solid #333;">
+          <div>
+            <div style="font-size: 16px; color: #fff; margin-bottom: 4px;">${data.content}</div>
+            <div style="font-size: 10px; color: #888; text-transform: uppercase;">Sent at ${timeStr}</div>
+          </div>
+          <button onclick="deleteRequest('${docSnap.id}')" 
+                  style="display: ${isAdmin ? 'block' : 'none'}; background: #ff4444; color: white; border: none; padding: 8px 15px; cursor: pointer; border-radius: 5px; font-size: 11px; font-weight: bold;">
+            READ
+          </button>
+        </div>
+      `;
+    });
+  });
+
+  window.deleteRequest = async (id) => {
+    if(confirm("Delete this request?")) {
+      await deleteDoc(doc(db, "requests", id));
+    }
+  };
+</script>
+
 </body>
-
-
 </html>
-
-
-
 
 
 
