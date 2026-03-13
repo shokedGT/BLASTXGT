@@ -141,7 +141,14 @@ nav ul li a {
 .nav-left {
   position: absolute;
   top: 20px;          
-  left: 50px; /* Reduced from 350px so it shows up on more screens */
+  left: 20px; 
+}
+
+
+@media (min-width: 1024px) {
+  .nav-left {
+    left: 350px; 
+  }
 }
 
 .nav-left a {
@@ -155,6 +162,7 @@ nav ul li a {
   -webkit-text-fill-color: transparent;
   text-decoration: none;
   transition: all 0.3s ease;
+  display: inline-block; 
   transform: skewX(-15deg);
 }
 
