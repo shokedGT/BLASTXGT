@@ -57,21 +57,14 @@
   let isAdmin = localStorage.getItem('adminMode') === 'true';
 
   window.toggleAdmin = () => {
-    if (!isAdmin) {
-      const password = prompt("Enter Admin Password:");
-      if (password === "was360was") { 
-        isAdmin = true;
-        localStorage.setItem('adminMode', 'true');
-        alert("Admin Mode: ON");
-        location.reload();
-      } else {
-        alert("Wrong password!");
-      }
-    } else {
-      isAdmin = false;
-      localStorage.setItem('adminMode', 'false');
-      alert("Admin Mode: OFF");
+    const password = prompt("Enter Admin Password:");
+    if (password === "was360was") { 
+      isAdmin = !isAdmin;
+      localStorage.setItem('adminMode', isAdmin);
+      alert(`Admin Mode: ${isAdmin ? 'ON' : 'OFF'}`);
       location.reload();
+    } else {
+      alert("Wrong password!");
     }
   };
 
@@ -79,21 +72,47 @@
     const input = document.getElementById('reqContent');
     const btn = document.getElementById('sendBtn');
     const text = input.value;
-    if(text.trim() !== "") {
-      try {
-        await addDoc(reqCol, { content: text, timestamp: Date.now() });
+
+    if(text.trim() === "") return;
+
+    
+    if(text.length > 100) {
+        alert("Too long! Keep it under 100 chars.");
+        return;
+    }
+
+    const now = Date.now();
+    const fifteenMins = 15 * 60 * 1000;
+    
+    
+    let stats = JSON.parse(localStorage.getItem('requestStats'));
+
+    
+    if (!stats || (now - stats.time > fifteenMins)) {
+        stats = { count: 0, time: now };
+    }
+
+    
+    if (stats.count >= 3) {
+        const minsLeft = Math.ceil((fifteenMins - (now - stats.time)) / 60000);
+        alert("Limit reached! Try again in " + minsLeft + " minutes.");
+        return; 
+    }
+
+    try {
+        await addDoc(reqCol, { content: text, timestamp: now });
+        
+        
+        stats.count = stats.count + 1;
+        localStorage.setItem('requestStats', JSON.stringify(stats));
+
         input.value = ''; 
         btn.innerText = "SENT! ✔";
-        btn.style.background = "#fff"; 
-        setTimeout(() => {
-          btn.innerText = "Send";
-          btn.style.background = "#10d177";
-        }, 2000);
-      } catch (e) {
-        alert("Error! Check your Firebase Rules.");
-      }
+        setTimeout(() => { btn.innerText = "Send"; }, 2000);
+    } catch (e) {
+        alert("Firebase Error!");
     }
-  };
+};
 
   const q = query(reqCol, orderBy("timestamp", "desc"));
   onSnapshot(q, (snapshot) => {
@@ -103,6 +122,8 @@
       const data = docSnap.data();
       const date = new Date(data.timestamp);
       const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      
+      
       board.innerHTML += `
         <div style="background: rgba(34, 34, 34, 0.8); padding: 15px; margin-bottom: 12px; border-left: 4px solid #10d177; display: flex; justify-content: space-between; align-items: center; border-radius: 8px; border: 1px solid #333;">
           <div>
@@ -127,8 +148,6 @@
 
 </body>
 </html>
-
-
 
 
 
